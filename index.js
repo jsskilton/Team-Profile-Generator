@@ -17,7 +17,26 @@ const team=[]
 // Function to prompt for manager details
 const promptManager = async () => {
     const answers = await inquirer.prompt([
-        // Inquirer questions for manager details
+        {
+            type: 'input',
+            name: 'name',
+            message: "Enter manager's name:",
+        },
+        {
+            type: 'input',
+            name: 'id',
+            message: "Enter manager's ID:",
+        },
+        {
+            type: 'input',
+            name: 'email',
+            message: "Enter manager's email:",
+        },
+        {
+            type: 'input',
+            name: 'officeNumber',
+            message: "Enter manager's office number:",
+        }
     ]);
 
     const manager = new Manager(answers.name, answers.id, answers.email, answers.officeNumber);
@@ -30,7 +49,26 @@ const promptManager = async () => {
 // Function to prompt for engineer details
 const promptEngineer = async () => {
     const answers = await inquirer.prompt([
-        // Inquirer questions for engineer details
+        {
+            type: 'input',
+            name: 'name',
+            message: "Enter engineer's name:",
+        },
+        {
+            type: 'input',
+            name: 'id',
+            message: "Enter engineer's ID:",
+        },
+        {
+            type: 'input',
+            name: 'email',
+            message: "Enter engineer's email:",
+        },
+        {
+            type: 'input',
+            name: 'github',
+            message: "Enter engineer's GitHub username:",
+        }
     ]);
 
     const engineer = new Engineer(answers.name, answers.id, answers.email, answers.github);
@@ -43,7 +81,26 @@ const promptEngineer = async () => {
 // Function to prompt for intern details
 const promptIntern = async () => {
     const answers = await inquirer.prompt([
-        // Inquirer questions for intern details
+        {
+            type: 'input',
+            name: 'name',
+            message: "Enter intern's name:",
+        },
+        {
+            type: 'input',
+            name: 'id',
+            message: "Enter intern's ID:",
+        },
+        {
+            type: 'input',
+            name: 'email',
+            message: "Enter intern's email:",
+        },
+        {
+            type: 'input',
+            name: 'school',
+            message: "Enter intern's school:",
+        }
     ]);
 
     const intern = new Intern(answers.name, answers.id, answers.email, answers.school);
@@ -60,11 +117,13 @@ const promptMenu = async () => {
             type: 'list',
             name: 'choice',
             message: 'What would you like to do?',
-            choices: ['Add an engineer', 'Add an intern', 'Finish building the team'],
+            choices: ['Add a manager', 'Add an engineer', 'Add an intern', 'Finish building the team'],
         },
     ]);
 
-    if (answer.choice === 'Add an engineer') {
+    if (answer.choice === 'Add a manager') {
+        promptManager();
+    } else if (answer.choice === 'Add an engineer') {
         promptEngineer();
     } else if (answer.choice === 'Add an intern') {
         promptIntern();
@@ -76,5 +135,6 @@ const promptMenu = async () => {
     }
 };
 
+
 // Start the application by prompting for the manager's details
-promptManager();
+promptMenu();
